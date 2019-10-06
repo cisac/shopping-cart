@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+nav ul {
+  display: flex;
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  font-size: 1.3rem;
+}
+
+nav li a {
+  display: block;
+  color: black;
+  margin: 2px;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+nav li.right {
+  margin-left: auto;
+}
+
+nav .active {
+  border-bottom: 1px solid #4f5251;
+}
+nav li a:hover {
+  background-color: #f7f7f8;
+}
+
+button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 3px;
+  color: white;
+  background-color: #676767;
+}
+
+.shopping-cart-widget > * {
+  padding: 3px;
+}
+
+.list-container {
+  list-style-type: none;
+  margin: 0.5rem;
+  padding: 0.6rem;
+
+  box-shadow: 0 2px 12px -4px rgba(0, 0, 0, 0.1);
+}
+
+.list-container.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex: 1;
+}
+
+li.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+}
+
+.list-container.categories {
+  padding: 0.5rem;
+}
+
+.product {
+  margin: 3px;
+  text-align: center;
+
+  border: 1px solid rgba(217, 219, 224, 0.5);
+}
+
+.product:hover {
+  background-color: #f7f7f8;
+}
+
+.product a {
+  color: black;
+  text-decoration: none;
+}
+.product .name {
+  font-weight: bold;
+  margin: 3px;
+}
+.price {
+  color: tomato;
+  margin: 3px;
+}
+
+.shopping-cart-item {
+  text-align: center;
+  margin: 3px;
+  border: 1px solid rgba(217, 219, 224, 0.5);
+}
+
+.total {
+  margin: 0.5rem;
+  text-align: right;
+  box-shadow: 0 2px 12px -4px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+  box-shadow: 0 2px 12px -4px rgba(0, 0, 0, 0.1);
+}
+
+.login-form label {
+  margin: 5px;
+  flex: auto;
+}
+.login-form input {
+  margin: 5px;
+}
+
+.checkbox label {
+  flex: 1;
+}

@@ -1,0 +1,66 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Chips & Guacamole",
+      "description": "description 1",
+      "price": 10,
+      "category": 1
+    },
+    {
+      "id": 2,
+      "name": "Loretta Ensalada",
+      "description": "description 2",
+      "price": 20,
+      "category": 2
+    },
+    {
+      "id": 3,
+      "name": "Milanesa Torta",
+      "description": "description 3",
+      "price": 30,
+      "category": 3
+    },
+    {
+      "id": 4,
+      "name": "Baja Shrimp Taco",
+      "description": "description 4",
+      "price": 40,
+      "category": 4
+    },
+    {
+      "id": 5,
+      "name": "Black Beans",
+      "description": "description 5",
+      "price": 50,
+      "category": 1
+    },
+    {
+      "id": 6,
+      "name": "Willie Ensalada",
+      "description": "description 6",
+      "price": 60,
+      "category": 2
+    },
+    {
+      "id": 7,
+      "name": "Cochinita Pibil Torta",
+      "description": "description 7",
+      "price": 70,
+      "category": 3
+    },
+    {
+      "id": 8,
+      "name": "Fish Taco",
+      "description": "description 8",
+      "price": 80,
+      "category": 4
+    }
+  ],
+  "categories": [
+    { "id": 1, "name": "Aperitivos" },
+    { "id": 2, "name": "Ensaladas" },
+    { "id": 3, "name": "Tortas" },
+    { "id": 4, "name": "Tacos" }
+  ]
+}
