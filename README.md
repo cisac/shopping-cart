@@ -13,3 +13,7 @@ yarn start
 TODO:
 
 - docs
+
+Influenced by:
+
+https://hackernoon.com/how-to-decouple-state-and-ui-a-k-a-you-dont-need-componentwillmount-cc90b787aa37
