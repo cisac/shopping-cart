@@ -12,7 +12,7 @@ function Checkout({ data, actions: { checkout } }) {
   return (
     <Box className="total">
       <Box>Total {total}</Box>
-      <Button onClick={checkout()}>Checkout</Button>
+      <Button onClick={checkout}>Checkout</Button>
     </Box>
   );
 }

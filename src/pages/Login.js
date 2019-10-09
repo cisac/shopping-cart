@@ -20,13 +20,13 @@ export default function Login({ actions: { login } }) {
             type="text"
             value={name}
             label="Name"
-            onChange={v => setName(v)}
+            onChange={setName}
           />
           <Input
             type="password"
             value={password}
             label="Password"
-            onChange={v => setPassword(v)}
+            onChange={setPassword}
           />
           <Flex justifyContent="flex-end">
             <Button>Login</Button>

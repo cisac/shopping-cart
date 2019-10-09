@@ -4,6 +4,22 @@ import ShoppingCart from "./ShoppingCart";
 import { Link } from "../components";
 import { useStore } from "../models";
 
+function User({ viewStore }) {
+  const { stores } = viewStore;
+  const { isAuthenticated } = useStore(stores.user, "navbar");
+
+  const to = isAuthenticated ? "/logout" : "/login";
+  const label = isAuthenticated ? "Logout" : "Login";
+  const handler = () =>
+    isAuthenticated ? viewStore.performLogout() : viewStore.showLogin();
+
+  return (
+    <Link to={to} onClick={handler}>
+      {label}
+    </Link>
+  );
+}
+
 function NavBar({ viewStore }) {
   const { stores } = viewStore;
   const { data } = useStore(stores.shoppingCart, "navbar");
@@ -27,13 +43,7 @@ function NavBar({ viewStore }) {
           </Link>
         </li>
         <li className="right">
-          <Link
-            to="/login"
-            onClick={() => viewStore.login()}
-            isActive={name === "login"}
-          >
-            Login
-          </Link>
+          <User viewStore={viewStore} name={name} />
         </li>
         <li>
           <Link

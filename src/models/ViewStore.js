@@ -4,16 +4,21 @@ import { ProductsStore } from "./ProductsStore";
 import { ProductDetailStore } from "./ProductDetailStore";
 import { CartStore } from "./CartStore";
 import { CategoriesStore } from "./CategoriesStore";
+import { UserStore } from "./UserStore";
 
 const cartStore = CartStore();
 const productsStore = ProductsStore();
 const productDetailStore = ProductDetailStore();
 const categoriesStore = CategoriesStore();
+const userStore = UserStore();
 
-window.productsStore = productsStore;
-window.cartStore = cartStore;
-window.productDetailStore = productDetailStore;
-window.categoriesStore = categoriesStore;
+if (process.env.NODE_ENV === "development") {
+  window.productsStore = productsStore;
+  window.cartStore = cartStore;
+  window.productDetailStore = productDetailStore;
+  window.categoriesStore = categoriesStore;
+  window.userStore = userStore;
+}
 
 const stores = {
   products: {
@@ -35,6 +40,11 @@ const stores = {
     data: categoriesStore.data,
     addListener: categoriesStore.addListener,
     removeListener: categoriesStore.removeListener
+  },
+  user: {
+    data: userStore.data,
+    addListener: userStore.addListener,
+    removeListener: userStore.removeListener
   }
 };
 
@@ -48,13 +58,13 @@ const homeView = viewStore => ({
   }
 });
 
-const shoppingCartView = () => ({
+const shoppingCartView = viewStore => ({
   name: "shopping-cart",
   stores,
   actions: {
     removeFromCart: product => () => cartStore.remove(product),
     setQuantity: (product, qty) => cartStore.updateProductQty(product, qty),
-    checkout: () => () => console.log("TODO: checkout")
+    checkout: () => viewStore.showCheckout()
   }
 });
 
@@ -69,13 +79,17 @@ const productDetailView = (product, productId) => ({
 
 const loginView = viewStore => ({
   name: "login",
+  stores,
   hideNavBar: true,
   actions: {
-    login: (user, password) => {
-      console.log(`login ${user} ${password}`);
-      viewStore.showHome();
-    }
+    login: (user, password) => viewStore.performLogin(user, password)
   }
+});
+
+const checkoutView = viewStore => ({
+  name: "checkout",
+  stores,
+  actions: {}
 });
 
 function ViewStore() {
@@ -121,11 +135,40 @@ function ViewStore() {
   }
 
   function showCart() {
-    updateView(shoppingCartView());
+    updateView(shoppingCartView(this));
   }
 
-  function login() {
+  function showCheckout() {
+    if (isAuthenticated()) {
+      updateView(checkoutView(this));
+    } else {
+      this.nextView = "checkout";
+      this.showLogin();
+    }
+  }
+
+  function showLogin() {
     updateView(loginView(this));
+  }
+
+  function performLogin(user, password) {
+    if (user === "john" && password === "doe") {
+      userStore.setUser(user);
+      if (this.nextView === "checkout") {
+        this.showCheckout();
+      } else {
+        this.showHome();
+      }
+    }
+  }
+
+  function performLogout() {
+    userStore.setUser(null);
+    this.showHome();
+  }
+
+  function isAuthenticated() {
+    return userStore.isAuthenticated();
   }
 
   return {
@@ -133,7 +176,11 @@ function ViewStore() {
     showHome,
     showCart,
     showProduct,
-    login,
+    showCheckout,
+    showLogin,
+    performLogin,
+    performLogout,
+    isAuthenticated,
     data: observable.data,
     addListener: observable.addListener,
     removeListener: observable.removeListener
